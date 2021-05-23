@@ -15,5 +15,3 @@ spec:
       containers:
       - name: camera
         image: jroshanucb/camera
-        ports:
-        - containerPort:
