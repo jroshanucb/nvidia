@@ -11,15 +11,15 @@ LOCAL_MQTT_HOST="mosquitto-service"
 LOCAL_MQTT_PORT=1883
 LOCAL_MQTT_TOPIC="my_topic"
 
-local_mqttclient = mqtt.Client()
-local_mqttclient.on_connect = on_connect_local
-local_mqttclient.connect(LOCAL_MQTT_HOST, LOCAL_MQTT_PORT, 60)
-
 def on_connect_local(client, userdata, flags, rc):
         print("connected to local broker with rc: " + str(rc))
 
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+
+local_mqttclient = mqtt.Client()
+local_mqttclient.on_connect = on_connect_local
+local_mqttclient.connect(LOCAL_MQTT_HOST, LOCAL_MQTT_PORT, 60)
 
 # the index depends on your camera setup and which one is your USB camera.
 # you may need to change to 1 depending on your local config
