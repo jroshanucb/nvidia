@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: camera
-        image: jroshanucb/camera:latest
+        image: jroshanucb/cam:latest
         volumeMounts:
         - mountPath: /dev/video0
           name: dev-video0
