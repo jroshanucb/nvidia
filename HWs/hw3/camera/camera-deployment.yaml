@@ -17,7 +17,7 @@ spec:
         image: jroshanucb/camera:latest
         volumeMounts:
         - mountPath: /dev/video0
-          name: dev-diceo0
+          name: dev-video0
         securityContext:
           privileged: true
       volumes:
