@@ -4,9 +4,6 @@ import numpy as np
 import cv2
 import paho.mqtt.client as mqtt
 
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
-
 LOCAL_MQTT_HOST="mosquitto-service"
 LOCAL_MQTT_PORT=1883
 LOCAL_MQTT_TOPIC="my_topic"
@@ -14,8 +11,7 @@ LOCAL_MQTT_TOPIC="my_topic"
 def on_connect_local(client, userdata, flags, rc):
         print("connected to local broker with rc: " + str(rc))
 
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+face_cascade = cv2.CascadeClassifier('/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml')
 
 local_mqttclient = mqtt.Client()
 local_mqttclient.on_connect = on_connect_local
@@ -41,15 +37,10 @@ while(True):
         gray_img = gray[y:y+h, x:x+w]
         roi_gray = gray[y:y+h, x:x+w]
         roi_color = img[y:y+h, x:x+w]
-        eyes = eye_cascade.detectMultiScale(roi_gray)
-        for (ex,ey,ew,eh) in eyes:
-            cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
-        _,msg_to_Send = cv2.imencode('.png', gray_img)
-        bin_msg = png.tobytes()
+        _,msg_to_send = cv2.imencode('.png', gray_img)
+        bin_msg = msg_to_send.tobytes()
         #publish the message
         local_mqttclient.publish(LOCAL_MQTT_TOPIC, bin_msg)
-
-    # cv2.imshow('img', img)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
