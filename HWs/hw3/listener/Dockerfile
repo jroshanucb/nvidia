@@ -7,6 +7,6 @@ RUN pip3 install Cython
 RUN pip3 install numpy
 RUN pip3 install paho-mqtt
 # example from https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_gui/py_video_display/py_video_display.html
-COPY writes3.py writes3.py
+COPY listener.py listener.py
 
-CMD ["python3","writes3.py"]
+CMD ["python3","listener.py"]
