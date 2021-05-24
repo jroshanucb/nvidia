@@ -2,8 +2,7 @@ import paho.mqtt.client as mqtt
 import sys
 
 
-# LOCAL_MQTT_HOST="mosquitto-service"
-LOCAL_MQTT_HOST="10.43.70.105"
+LOCAL_MQTT_HOST="mosquitto-service"
 LOCAL_MQTT_PORT=1883
 LOCAL_MQTT_TOPIC="my_topic"
 #LOCAL_MQTT_TOPIC="w251_hw3"

@@ -24,3 +24,15 @@ spec:
       - name: dev-video0
         hostPath:
           path: /dev/video0
+  selector:
+    matchLabels:
+      app: listener
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: listener
+    spec:
+      containers:
+      - name: listener
+        image: jroshanucb/listener:latest
