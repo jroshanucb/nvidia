@@ -40,8 +40,9 @@ while(True):
         _,msg_to_send = cv2.imencode('.png', gray_img)
         bin_msg = msg_to_send.tobytes()
         #publish the message
-        print("face detected: ", bin_msg)
+        print("face detected: ")
         local_mqttclient.publish(LOCAL_MQTT_TOPIC, bin_msg)
+        print("published mesg")
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
