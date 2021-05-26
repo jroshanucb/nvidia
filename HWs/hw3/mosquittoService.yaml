@@ -10,5 +10,6 @@ spec:
   - port: 1883
     protocol: TCP
     nodePort: 30789
+    targetPort: 1883
   selector:
     app: mosquitto
