@@ -5,10 +5,10 @@ metadata:
   labels:
     run: mosquitto
 spec:
-  type: NodePort
+  type: NodePort 
   ports:
   - port: 1883
     protocol: TCP
-    targetPort: 1883
+    nodePort: 30789
   selector:
     app: mosquitto
