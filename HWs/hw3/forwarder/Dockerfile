@@ -1,9 +1,0 @@
-FROM alpine:latest
-  
-ENV PYTHONUNBUFFERED=1
-WORKDIR /app
-RUN apt-get update && apt install -y python3 python3-pip
-RUN pip3 install paho-mqtt
-COPY forwarder.py forwarder.py
-COPY lforwarder.py lforwarder.py
-CMD python3 forwarder.py
