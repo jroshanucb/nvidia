@@ -16,6 +16,9 @@ def on_connect_local(client, userdata, flags, rc):
 def on_connect_remote(client, userdata, flags, rc):
         print("connected to remote broker with rc: " + str(rc))
 
+def on_publish_remote(client, userdata, result):
+    print("data published on the cloud queue with result: ", result)
+
 def on_message(client,userdata, msg):
   try:
     print("message received: ",msg.payload)
@@ -34,7 +37,7 @@ local_mqttclient.on_message = on_message
 remote_mqttclient = mqtt.Client()
 remote_mqttclient.on_connect = on_connect_remote
 remote_mqttclient.connect(REMOTE_MQTT_HOST, REMOTE_MQTT_PORT, 60)
-
+remote_mqttclient.on_publish = on_publish_remote
 
 # go into a loop
 local_mqttclient.loop_forever()
